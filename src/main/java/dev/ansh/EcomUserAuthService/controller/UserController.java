@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.RoleNotFoundException;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -16,22 +18,22 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody LoginRequestDTO loginRequestDTO){
-        return null;
+        return ResponseEntity.ok(userService.login(loginRequestDTO));
     }
 
     @GetMapping("/logout")
-    public ResponseEntity logout(){
-        return null;
+    public ResponseEntity logout(@RequestHeader("Authorisation") String token){
+        return ResponseEntity.ok(userService.logout(token));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity login(@RequestBody SignupRequestDTO signupRequestDTO){
-        return null;
+    public ResponseEntity signup(@RequestBody SignupRequestDTO signupRequestDTO) throws RoleNotFoundException {
+        return ResponseEntity.ok(userService.signup(signupRequestDTO));
     }
 
     @GetMapping("/validate")
-    public ResponseEntity validate(){
-        return null;
+    public ResponseEntity<Boolean> validate(@RequestHeader("Authorisation") String token){
+        return ResponseEntity.ok(userService.validateToken(token));
     }
 
 

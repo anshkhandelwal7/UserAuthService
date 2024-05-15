@@ -1,14 +1,12 @@
 package dev.ansh.EcomUserAuthService.repository;
 
+import dev.ansh.EcomUserAuthService.entity.Role;
 import dev.ansh.EcomUserAuthService.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByEmailId(String emailId);
-    Optional<User> findByToken(String token);
+public interface RoleRepository extends JpaRepository<Role, UUID> {
 }

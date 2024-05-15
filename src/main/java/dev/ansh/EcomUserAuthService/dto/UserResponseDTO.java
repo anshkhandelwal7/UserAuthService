@@ -14,12 +14,14 @@ public class UserResponseDTO {
     private String email;
     private String name;
     private List<RoleResponseDTO> roles;
+    private String token;
 
     public static UserResponseDTO from(User user) {
         if(user == null) return null;
         UserResponseDTO userResponseDTO = new UserResponseDTO();
         userResponseDTO.setEmail(user.getEmail());
         userResponseDTO.setName(user.getName());
+        userResponseDTO.setToken(user.getToken());
         userResponseDTO.roles=new ArrayList<>();
         for(Role role : user.getRoles()) {
             RoleResponseDTO roleResponseDTO = new RoleResponseDTO();
